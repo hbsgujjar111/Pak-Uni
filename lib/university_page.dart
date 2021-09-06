@@ -15,7 +15,6 @@ class UniversityPage extends StatefulWidget {
 
 class _UniversityPageState extends State<UniversityPage> {
   dynamic data = ApiData().fetchAllUni();
-  var count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0;
 
   @override
   void initState() {
@@ -79,7 +78,6 @@ class _UniversityPageState extends State<UniversityPage> {
                                     itemBuilder: (context, i) {
                                       if (widget.title.toString() ==
                                           "All Universities") {
-                                        count1 = count1 + 1;
                                         return universityBox(
                                           context,
                                           (snapshot.data as List)[i]["name"]
@@ -87,7 +85,6 @@ class _UniversityPageState extends State<UniversityPage> {
                                           (snapshot.data as List)[i]
                                                   ["web_pages"][0]
                                               .toString(),
-                                          (count1).toString(),
                                         );
                                       } else if (widget.title.toString() ==
                                           "Punjab") {
@@ -95,7 +92,6 @@ class _UniversityPageState extends State<UniversityPage> {
                                                     ["state-province"]
                                                 .toString() ==
                                             "Panjab") {
-                                          count2 = count2 + 1;
                                           return universityBox(
                                             context,
                                             (snapshot.data as List)[i]["name"]
@@ -103,7 +99,6 @@ class _UniversityPageState extends State<UniversityPage> {
                                             (snapshot.data as List)[i]
                                                     ["web_pages"][0]
                                                 .toString(),
-                                            (count2).toString(),
                                           );
                                         }
                                       } else if (widget.title.toString() ==
@@ -112,7 +107,6 @@ class _UniversityPageState extends State<UniversityPage> {
                                                     ["state-province"]
                                                 .toString() ==
                                             "Sindh") {
-                                          count3 = count3 + 1;
                                           return universityBox(
                                             context,
                                             (snapshot.data as List)[i]["name"]
@@ -120,7 +114,6 @@ class _UniversityPageState extends State<UniversityPage> {
                                             (snapshot.data as List)[i]
                                                     ["web_pages"][0]
                                                 .toString(),
-                                            (count3).toString(),
                                           );
                                         }
                                       } else if (widget.title.toString() ==
@@ -129,7 +122,6 @@ class _UniversityPageState extends State<UniversityPage> {
                                                     ["state-province"]
                                                 .toString() ==
                                             "Balochistan") {
-                                          count4 = count4 + 1;
                                           return universityBox(
                                             context,
                                             (snapshot.data as List)[i]["name"]
@@ -137,7 +129,6 @@ class _UniversityPageState extends State<UniversityPage> {
                                             (snapshot.data as List)[i]
                                                     ["web_pages"][0]
                                                 .toString(),
-                                            (count4).toString(),
                                           );
                                         }
                                       } else if (widget.title.toString() ==
@@ -146,7 +137,6 @@ class _UniversityPageState extends State<UniversityPage> {
                                                     ["state-province"]
                                                 .toString() ==
                                             "Khyber Pakhtunkhwa") {
-                                          count5 = count5 + 1;
                                           return universityBox(
                                             context,
                                             (snapshot.data as List)[i]["name"]
@@ -154,7 +144,6 @@ class _UniversityPageState extends State<UniversityPage> {
                                             (snapshot.data as List)[i]
                                                     ["web_pages"][0]
                                                 .toString(),
-                                            (count5).toString(),
                                           );
                                         }
                                       }
@@ -205,7 +194,7 @@ class _UniversityPageState extends State<UniversityPage> {
   }
 }
 
-Widget universityBox(BuildContext context, String title, url, no) {
+Widget universityBox(BuildContext context, String title, url) {
   return Container(
     width: MediaQuery.of(context).size.width * .96,
     height: MediaQuery.of(context).size.height * .08,
@@ -214,45 +203,34 @@ Widget universityBox(BuildContext context, String title, url, no) {
       MediaQuery.of(context).size.width * .01,
     ),
     padding: EdgeInsets.all(
-      MediaQuery.of(context).size.width * .01,
+      MediaQuery.of(context).size.width * .012,
     ),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          width: MediaQuery.of(context).size.width * .1,
+          width: MediaQuery.of(context).size.width * .83,
           height: MediaQuery.of(context).size.height * .07,
-          // color: Colors.blue,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              AutoSizeText(
-                "$no. ",
-                style: TextStyle(
-                  color: Color(0xff1b5e20),
-                  fontSize: MediaQuery.of(context).size.width * .04,
-                ),
-                maxLines: 1,
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-        ),
-        Container(
-          width: MediaQuery.of(context).size.width * .74,
-          height: MediaQuery.of(context).size.height * .07,
-          // color: Colors.blue,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AutoSizeText(
-                title,
-                style: TextStyle(
-                    color: Color(0xff1b5e20),
-                    fontSize: MediaQuery.of(context).size.width * .04,
-                    fontWeight: FontWeight.bold),
-                maxLines: 2,
-                textAlign: TextAlign.center,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width * .83,
+                    child: AutoSizeText(
+                      title,
+                      style: TextStyle(
+                          color: Color(0xff1b5e20),
+                          fontSize: MediaQuery.of(context).size.width * .04,
+                          fontWeight: FontWeight.bold),
+                      maxLines: 2,
+                      // textAlign: TextAlign.left,
+                      textDirection: TextDirection.ltr,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -260,7 +238,6 @@ Widget universityBox(BuildContext context, String title, url, no) {
         Container(
           width: MediaQuery.of(context).size.width * .1,
           height: MediaQuery.of(context).size.height * .07,
-          // color: Colors.blue,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
